@@ -2,14 +2,13 @@ package main
 
 import (
 	"WiFiAuth/internal/config"
-	"WiFiAuth/internal/diagnostics"
 	"WiFiAuth/internal/resources"
 	"WiFiAuth/internal/restapi/api"
 	"fmt"
 	"go.uber.org/zap"
 )
 
-func main()  {
+func main() {
 
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
@@ -29,15 +28,11 @@ func main()  {
 
 	slogger.Info("Configuring the application units...")
 
-	diag := diagnostics.New(slogger, config.Config.DIAGPORT, rsc.Healthz)
-	diag.Start(slogger)
-	slogger.Info("The application is ready to serve requests.")
+	//diag := diagnostics.New(slogger, config.Config.DIAGPORT, rsc.Healthz)
+	//diag.Start(slogger)
+	//slogger.Info("The application is ready to serve requests.")
 
 	rapi := api.New(slogger)
 	rapi.Start(config.Config.RESTAPIPort)
 
-
 }
-
-
-

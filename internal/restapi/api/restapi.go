@@ -28,7 +28,7 @@ func New(logger *zap.SugaredLogger) *RESTAPI {
 
 	v1 := r.Group("/api/v1")
 	{
-		v1.POST("StatMessage", controller.SendCodeBySms)
+		v1.POST("SendCodeBySms", controller.SendCodeBySms)
 
 	}
 

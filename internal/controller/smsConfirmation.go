@@ -6,45 +6,59 @@ import (
 	"WiFiAuth/internal/restapi"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/gomodule/redigo/redis"
 	"log"
 	"net/http"
 	"strconv"
 )
 
-func(c * Controller) SendCodeBySms(ctx *gin.Context)  {
+func (c *Controller) SendCodeBySms(ctx *gin.Context) {
 
 	country_code, err := strconv.Atoi(ctx.Request.FormValue("country-code"))
-	if err != nil{
-		restapi.ResponseBadRequest("Couldn't parse request body", c)
+	if err != nil {
+		restapi.ResponseBadRequest("Couldn't parse request body", ctx)
 	}
 
 	mobile_number, err := strconv.ParseInt(ctx.Request.FormValue("mobile_number"), 10, 64)
-	if err != nil{
-		restapi.ResponseBadRequest("Couldn't parse request body", c)
+	if err != nil {
+		restapi.ResponseBadRequest("Couldn't parse request body", ctx)
 	}
-
 
 	ip := ctx.ClientIP()
+	log.Println(ip)
 
-	country_code_string := strconv.Itoa(country_code)
-	mobile_number_string := fmt.Sprint(mobile_number)
+	mobileNumber := fmt.Sprint(country_code) + fmt.Sprint(mobile_number)
 
-	smsCon := model.SMSConfirmationModel{Ip: ip, Code: model.GetCode(), CountAttempt: 0}
+	smsCon := model.SMSConfirmationModel{Ip: ip, Code: model.GetCode(), CountAttempt: 0, TelNumber: mobileNumber}
+	//s := model.NewSMSConfirmationModel(smsCon)
 
-	if _, err := config.Config.REDISPOOL.Get().Do("SET", (country_code_string+mobile_number_string), smsCon); err != nil {
+	if _, err := config.Config.REDISPOOL.Get().Do("SET", mobileNumber, smsCon); err != nil {
 		log.Fatal(err)
 	}
 
+	//values, err := redis.String(config.Config.REDISPOOL.Get().Do("GET", mobileNumber))
+	//if err != nil {
+	//	fmt.Println("value rr")
+	//	log.Fatal(err)
+	//}
 
-	values, err := redis.String(config.Config.REDISPOOL.Get().Do("GET", (country_code_string+mobile_number_string)))
+	stateCode := smsCon.SendCode()
+
+	if stateCode == 201 {
+		ctx.JSON(http.StatusOK, "ok")
+	} else {
+		restapi.ResponseInternalserverError("Failed to send message", ctx)
+	}
+}
+
+func (с *Controller) CheckCodeByTelNumber(ctx *gin.Context) {
+
+	mobile_number, err := strconv.ParseInt(ctx.Request.FormValue("mobile_number"), 10, 64)
 	if err != nil {
-		fmt.Println("value rr")
-		log.Fatal(err)
+		restapi.ResponseBadRequest("Couldn't parse request body", ctx)
 	}
 
+	mobileNumber := fmt.Sprint(mobile_number)
 
-	ctx.JSON(http.StatusOK, values)
-
+	code := ctx.Request.FormValue("code")
 
 }

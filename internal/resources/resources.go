@@ -32,7 +32,7 @@ func newPool() *redis.Pool {
 		// Dial is an application supplied function for creating and
 		// configuring a connection.
 		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp", "192.168.1.3:6379")
+			c, err := redis.Dial("tcp", config.Config.REDISURL)
 			if err != nil {
 				panic(err.Error())
 			}

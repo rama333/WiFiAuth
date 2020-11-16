@@ -8,11 +8,11 @@ import (
 var Config appConfig
 
 type appConfig struct {
-	REDISPOOL        *redis.Pool
-	REDISPOOLERR            error
-	RESTAPIPort      int     `mapstructure:"rest_api_port"`
-	REDISURL            string  `mapstructure:"redis_url"`
-	DIAGPORT         int     `mapstructure:"diag_port"`
+	REDISPOOL    *redis.Pool
+	REDISPOOLERR error
+	RESTAPIPort  int    `mapstructure:"rest_api_port"`
+	REDISURL     string `mapstructure:"redis_url"`
+	DIAGPORT     int    `mapstructure:"diag_port"`
 }
 
 func LoadConfig(configPaths ...string) error {
@@ -28,7 +28,7 @@ func LoadConfig(configPaths ...string) error {
 	v.SetDefault("rest_api_port", 8080)
 	v.SetDefault("diag_port", 8081)
 	//v.SetDefault("db_url", "tcp://192.168.114.145:9000?debug=true")
-	v.SetDefault("redis_url", "tcp://dockerhost:9000?debug=true")
+	v.SetDefault("redis_url", "192.168.114.145:6379")
 
 	//for _, path := range configPaths {
 	//	v.AddConfigPath(path)
