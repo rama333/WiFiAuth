@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b31caad-cb96-49c6-b9e7-5e3cff3650dc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/wifi_auth/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/wifi_auth/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/controller/smsConfirmation.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controller/smsConfirmation.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/model/smsConfirmation.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/model/smsConfirmation.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/resources/healthz.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/resources/healthz.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/resources/resources.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/resources/resources.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/restapi/api/restapi.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/restapi/api/restapi.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,10 +78,22 @@
       <option name="presentableId" value="Default" />
       <updated>1605167206413</updated>
     </task>
+    <task id="LOCAL-00001" summary="add new func">
+      <created>1605528699536</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605528699536</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add new func" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new func" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -101,6 +107,10 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="1864" y="202" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1605168654153" />
+    <state x="1993" y="126" key="CommitChangelistDialog2" timestamp="1605528699231">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1993" y="126" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1605528699231" />
     <state x="2276" y="455" key="Github.ShareDialog" timestamp="1605515524995">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -145,6 +155,10 @@
     <state width="1878" height="305" key="GridCell.Tab.0.right/0.23.1440.819/1440.0.1920.1080@1440.0.1920.1080" timestamp="1605168891920" />
     <state width="1398" height="305" key="GridCell.Tab.0.right/0.23.1440.819@0.23.1440.819" timestamp="1605345436490" />
     <state width="1878" height="284" key="GridCell.Tab.0.right/0.25.1440.811/1440.0.1920.1016@1440.0.1920.1016" timestamp="1605525394651" />
+    <state x="2000" y="291" key="Vcs.Push.Dialog.v2" timestamp="1605528702218">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2000" y="291" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1605528702218" />
     <state x="2130" y="456" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1605507276138">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>

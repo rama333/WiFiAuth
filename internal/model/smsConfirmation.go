@@ -72,7 +72,7 @@ func (s *SMSConfirmationModel) SendCode() int {
 	return resp.StatusCode
 }
 
-func CheckCode(mobilNumber string) {
+func CheckCode(mobilNumber string, code string) bool {
 
 	values, err := redis.String(config.Config.REDISPOOL.Get().Do("GET", mobilNumber))
 	if err != nil {
@@ -80,4 +80,18 @@ func CheckCode(mobilNumber string) {
 		log.Fatal(err)
 	}
 
+	var sms []SMSConfirmationModel
+
+	err = json.Unmarshal([]byte(values), &sms)
+	if err != nil {
+		return false
+	}
+
+	log.Println(sms)
+
+	if len(sms) > 0 {
+		return true
+	}
+
+	return false
 }

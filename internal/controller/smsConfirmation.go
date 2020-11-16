@@ -61,4 +61,12 @@ func (с *Controller) CheckCodeByTelNumber(ctx *gin.Context) {
 
 	code := ctx.Request.FormValue("code")
 
+	state := model.CheckCode(mobileNumber, code)
+
+	if state {
+		ctx.JSON(http.StatusOK, "ok")
+	} else {
+		ctx.JSON(http.StatusOK, "no")
+	}
+
 }
