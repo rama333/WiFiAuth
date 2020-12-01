@@ -2,9 +2,13 @@ package resources
 
 import (
 	"WiFiAuth/internal/config"
+	"WiFiAuth/internal/model"
 	"github.com/gomodule/redigo/redis"
+	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 	"go.uber.org/zap"
 	"log"
+	"time"
 )
 
 type R struct {
@@ -12,13 +16,29 @@ type R struct {
 
 func New(logger *zap.SugaredLogger) (*R, error) {
 
+	postgresCon, err := sqlx.Connect("postgres", config.Config.POSTGRESURL)
+
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	config.Config.POSTGRESDB = postgresCon
+
 	config.Config.REDISPOOL = newPool()
 	conn := config.Config.REDISPOOL.Get()
 
-	err := ping(conn)
+	err = ping(conn)
 	if err != nil {
-		return nil, config.Config.REDISPOOLERR
+		log.Println(err)
+		return nil, err
 	}
+
+	go func() {
+		for {
+			model.UpdateStateCallNumber()
+			time.Sleep(time.Minute * 5)
+		}
+	}()
 
 	return &R{}, nil
 }

@@ -21,9 +21,9 @@ func main() {
 		panic(fmt.Errorf("invalid application configuration: %s", err))
 	}
 
-	rsc, err := resources.New(slogger)
+	_, err := resources.New(slogger)
 	if err != nil {
-		slogger.Fatalw("Can't initialize resources.", "err", rsc)
+		slogger.Fatalw("Can't initialize resources.", "err", err)
 	}
 
 	slogger.Info("Configuring the application units...")

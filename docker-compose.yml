@@ -1,0 +1,33 @@
+version: "3"
+#networks:
+#  wifi_auth:
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 10.80.44.0/24
+#          gateway: 192.168.143.1
+
+services:
+  wifi_auth:
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8090:8090
+      - 8091:8091
+    environment:
+      - PORT=8090
+      - DIAG_PORT=8091
+    extra_hosts:
+      - "dockerhost:192.168.114.145"
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "300m"
+        max-file: "10"
+#    networks:
+#      - wifi_auth
